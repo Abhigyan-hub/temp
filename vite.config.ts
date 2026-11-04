@@ -4,6 +4,7 @@
 //     componentTagger (dev-only), VITE_* env injection, @ path alias, React/TanStack dedupe,
 //     error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 // Production: when BACKEND_URL is set at build time (e.g. https://ssapi.mozartdev.in),
@@ -21,7 +22,15 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
+    resolve: {
+      // Absolute alias. Relative ../../backend imports break in the split route chunks
+      // because those chunks are not real files next to src/routes.
+      alias: {
+        "@shared": fileURLToPath(new URL("./backend/src/shared", import.meta.url)),
+      },
+    },
     server: {
+      fs: { allow: [fileURLToPath(new URL("./backend", import.meta.url))] },
       // Local dev: forward API calls to the Express backend (cd backend && npm run dev).
       proxy: {
         "/mailflow": process.env.API_PROXY_TARGET ?? "http://localhost:5000",

@@ -22,7 +22,7 @@ import { ContactProfileSheet } from "@/components/contact-profile-sheet";
 import { ContactStatusBadge } from "@/components/contact-status-badge";
 import { ContactsAnalytics } from "@/components/contacts-analytics";
 import { EmailCorrectionDialog } from "@/components/email-correction-dialog";
-import { CONTACT_INTEL_STATUSES } from "../../backend/src/shared/contactStatus.js";
+import { CONTACT_INTEL_STATUSES } from "@shared/contactStatus.js";
 import { BlockContactDialog, BlockFields } from "@/components/block-contact-dialog";
 import { blockUntilFrom, blockUntilLabel, initialBlockValue, type BlockValue } from "@/lib/block";
 import { ContactImportDialog } from "@/components/contact-import-dialog";

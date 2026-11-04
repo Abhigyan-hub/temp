@@ -12,7 +12,7 @@ import { useAuthedLoad } from "@/hooks/use-authed-load";
 import { api, errorMessage } from "@/lib/api";
 import { formatDateTime } from "@/lib/datetime";
 import { useApp } from "@/lib/store";
-import { CONTACT_INTEL_STATUSES } from "../../backend/src/shared/contactStatus.js";
+import { CONTACT_INTEL_STATUSES } from "@shared/contactStatus.js";
 
 interface Analytics {
   totalContacts: number;

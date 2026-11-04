@@ -18,7 +18,7 @@ import { blockUntilLabel } from "@/lib/block";
 import { formatDateTime } from "@/lib/datetime";
 import { formatBytes } from "@/lib/files";
 import { useApp, type Attachment, type Contact } from "@/lib/store";
-import { sendRestriction } from "../../backend/src/shared/contactStatus.js";
+import { sendRestriction } from "@shared/contactStatus.js";
 
 interface Activity {
   id: string;

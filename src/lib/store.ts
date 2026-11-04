@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { ContactIntelStatus } from "../../backend/src/shared/contactStatus.js";
+import type { ContactIntelStatus } from "@shared/contactStatus.js";
 import { api, saveBlob, setUnauthorizedHandler } from "./api";
 
 // Server-owned data lives in MongoDB; this store is an in-memory cache of it for the UI.
@@ -632,4 +632,4 @@ export const useApp = create<AppState>()((set, get) => {
 setUnauthorizedHandler(() => useApp.setState({ ...emptyData, user: null, authStatus: "guest" }));
 
 // The server's own renderer, so previews show exactly what gets sent.
-export { composeEmail, currentDateLabel, insertAtCursor, renderTemplate } from "../../backend/src/shared/templateRender.js";
+export { composeEmail, currentDateLabel, insertAtCursor, renderTemplate } from "@shared/templateRender.js";

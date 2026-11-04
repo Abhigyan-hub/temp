@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AppShell } from "@/components/app-shell";
 import { composeEmail, currentDateLabel, insertAtCursor, renderTemplate, resumeFileName, useApp, type Template, type TemplateInput } from "@/lib/store";
-import { CONTACT_VARIABLES, SENDER_VARIABLES } from "../../backend/src/shared/templateRender.js";
+import { CONTACT_VARIABLES, SENDER_VARIABLES } from "@shared/templateRender.js";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { errorMessage } from "@/lib/api";
 import { useAuthedLoad } from "@/hooks/use-authed-load";

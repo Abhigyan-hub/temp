@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ContactStatusBadge } from "@/components/contact-status-badge";
 import { formatDateTime } from "@/lib/datetime";
 import type { Contact } from "@/lib/store";
-import { sendRestriction } from "../../backend/src/shared/contactStatus.js";
+import { sendRestriction } from "@shared/contactStatus.js";
 
 const PAGE_SIZE = 25;
 const ALL = "all";
