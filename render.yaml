@@ -1,0 +1,53 @@
+# Render Blueprint for the MailFlow API (Express + MongoDB + Gmail + scheduler).
+# Render dashboard → New → Blueprint → pick this repo. Secrets marked sync:false are entered in the dashboard.
+services:
+  - type: web
+    name: mailflow-api
+    runtime: node
+    rootDir: backend
+    # The scheduler runs inside this process. Free instances sleep after ~15 min idle,
+    # so scheduled emails would only go out when the service wakes. Use "starter" or higher.
+    plan: starter
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /mailflow/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: GMAIL_USER
+        value: wankhedekhushant57@gmail.com
+      - key: GMAIL_PASS
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: ALLOWED_SIGNUP_EMAILS
+        sync: false
+      - key: COOKIE_SAMESITE
+        value: lax
+      - key: DAILY_SEND_LIMIT
+        value: "400"
+      # Resume Library: private S3-compatible bucket (see DEPLOYMENT.md → Resume storage)
+      - key: STORAGE_DRIVER
+        value: s3
+      - key: S3_BUCKET
+        sync: false
+      - key: S3_REGION
+        sync: false
+      - key: S3_ENDPOINT
+        sync: false
+      - key: S3_ACCESS_KEY_ID
+        sync: false
+      - key: S3_SECRET_ACCESS_KEY
+        sync: false
+      # Encrypts users' SMTP passwords. Generated once; don't regenerate it after accounts are saved.
+      - key: CREDENTIAL_ENCRYPTION_KEY
+        sync: false
+      - key: INBOX_SYNC_ENABLED
+        value: "true"
